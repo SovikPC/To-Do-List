@@ -11,14 +11,14 @@ import ru.example.to_dolist.data.database.entity.TaskEntity
 
 @Dao
 interface TaskDao {
-    @Query("Select * from TaskEntity")
+    @Query("Select * from Task")
     fun selectAllTask(): Flow<List<TaskEntity>>
-    @Query("Select * from TaskEntity where id = :id")
+    @Query("Select * from Task where id = :id")
     fun selectByIdTask(id: Long): Flow<TaskEntity>
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertTask(taskEntity: TaskEntity)
+    suspend fun insertTask(task: TaskEntity)
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun updateTask(taskEntity: TaskEntity)
+    suspend fun updateTask(task: TaskEntity)
     @Delete
-    suspend fun delete(id: Long)
+    suspend fun delete(task: TaskEntity)
 }
